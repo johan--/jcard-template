@@ -1,14 +1,13 @@
 # J-Card Template
 
-[Printable in-browser template](https://unixispower.gitlab.io/jcard-template/)
-for cassette tape J-Cards built using [Jekyll](https://jekyllrb.com/) and
-hosted using [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/).
+Printable in-browser template for cassette tape J-cards.
 
 
 ## Users
 
 **Download the latest package
 [[^](https://github.com/BrendonIrwan/jcard-template/raw/master/release/J-Card Template u0r0.zip)]**
+
 Then open the `J-Card Template,html` with your web browser.
 
 
