@@ -5,29 +5,34 @@ var jcard = (function() {
     // find input elements in the controls module
     function findInputs(controls) {
         return {
-            print2:     controls.querySelector('#controls-print-2'),
-            forceCaps:  controls.querySelector('#controls-force-caps'),
-            shortBack:  controls.querySelector('#controls-short-back'),
+            dualPrint:      controls.querySelector('#controls-dual-print'),
+            allCaps:        controls.querySelector('#controls-all-caps'),
+            labelCaps:      controls.querySelector('#controls-label-caps'),
+            shortBack:      controls.querySelector('#controls-short-back'),
 
-            cover:      controls.querySelector('#controls-cover'),
-            cardColor:  controls.querySelector('#controls-card-color'),
-            textColor:  controls.querySelector('#controls-text-color'),
+            cover:          controls.querySelector('#controls-cover'),
+            cardColor:      controls.querySelector('#controls-card-color'),
+            textColor:      controls.querySelector('#controls-text-color'),
 
-            title:      controls.querySelector('#controls-title'),
-            subtitle:   controls.querySelector('#controls-subtitle'),
-            titleSize:  controls.querySelector('#controls-title-size'),
+            fontFamily:     controls.querySelector('#controls-font-family'),
+            italic:         controls.querySelector('#controls-italic'),
 
-            type:       controls.querySelector('#controls-type'),
-            typeSize:   controls.querySelector('#controls-type-size'),
+            titleMain:      controls.querySelector('#controls-title-main'),
+            titleSub:       controls.querySelector('#controls-title-sub'),
+            titleMainSize:  controls.querySelector('#controls-title-main-size'),
+            titleSubSize:   controls.querySelector('#controls-title-sub-size'),
 
-            noteUpper:  controls.querySelector('#controls-note-upper'),
-            noteLower:  controls.querySelector('#controls-note-lower'),
-            noteSize:   controls.querySelector('#controls-note-size'),
+            foot:           controls.querySelector('#controls-foot'),
+            footSize:       controls.querySelector('#controls-foot-size'),
 
-            sideA:      controls.querySelector('#controls-side-a'),
-            sideB:      controls.querySelector('#controls-side-b'),
-            trackSize:  controls.querySelector('#controls-track-size'),
-            backSize:   controls.querySelector('#controls-back-size')
+            noteUpper:      controls.querySelector('#controls-note-upper'),
+            noteLower:      controls.querySelector('#controls-note-lower'),
+            noteSize:       controls.querySelector('#controls-note-size'),
+
+            sideA:          controls.querySelector('#controls-side-a'),
+            sideB:          controls.querySelector('#controls-side-b'),
+            frontSize:      controls.querySelector('#controls-front-size'),
+            backSize:       controls.querySelector('#controls-back-size')
         }
     }
 
@@ -37,12 +42,9 @@ var jcard = (function() {
             root:           template,
             boundaries:     template.querySelector('.template-boundaries'),
             cover:          template.querySelector('.template-cover'),
-            titleGroups:    [
-                template.querySelector('.template-front-title-group'),
-                template.querySelector('.template-spine-title-group')],
             titles:         [
                 template.querySelector('.template-front-title'),
-                template.querySelector('.template-spine-title')],    
+                template.querySelector('.template-spine-title')],
             subtitles:      [
                 template.querySelector('.template-front-subtitle'),
                 template.querySelector('.template-spine-subtitle')],
@@ -52,36 +54,43 @@ var jcard = (function() {
             noteUpper:      template.querySelector('.template-note-upper'),
             noteLower:      template.querySelector('.template-note-lower'),
             sideA:          template.querySelector('.template-side-a'),
-            sideB:          template.querySelector('.template-side-b')
+            sideB:          template.querySelector('.template-side-b'),
+            labels:         [
+                template.querySelector('.template-side-a'),
+                template.querySelector('.template-side-b')]
         }
     }
 
     // add listeners to inputs that toggle option classes
     function addOptionListeners(inputs, root) {
-        addToggleListener(inputs.print2, root, 'print-2');
+        addToggleListener(inputs.dualPrint, root, 'print-2');
     }
 
     // add listeners to inputs that update j-card outputs
     function addJCardListeners(inputs, outputs) {
         addToggleListener(inputs.shortBack, outputs.root, 'short-back');
-        addToggleListener(inputs.forceCaps, outputs.root, 'force-caps');
+        addToggleListener(inputs.allCaps, outputs.root, 'force-caps');
+        addLabelCapsListener(inputs.labelCaps, outputs.labels, 0);
+        addLabelCapsListener(inputs.labelCaps, outputs.labels, 1);
 
         addImageListener(inputs.cover, outputs.cover);
         addColorListener(inputs.textColor, outputs.root, 'color');
         addColorListener(inputs.cardColor, outputs.boundaries, 'backgroundColor');
 
+        addFontListener(inputs.fontFamily, outputs.root);
+        addToggleListener(inputs.italic, outputs.root, 'italic');
+
         outputs.titles.forEach(function(titleOutput) {
-            addTextListener(inputs.title, titleOutput);
+            addTextListener(inputs.titleMain, titleOutput);
+            addSizeListener(inputs.titleMainSize, titleOutput);
         });
         outputs.subtitles.forEach(function(subtitleOutput) {
-            addTextListener(inputs.subtitle, subtitleOutput);
-        });
-        outputs.titleGroups.forEach(function(groupOutput) {
-            addSizeListener(inputs.titleSize, groupOutput);
+            addTextListener(inputs.titleSub, subtitleOutput);
+            addSizeListener(inputs.titleSubSize, subtitleOutput);
         });
 
-        addTextListener(inputs.type, outputs.type);
-        addSizeListener(inputs.typeSize, outputs.type);
+        addTextListener(inputs.foot, outputs.type);
+        addSizeListener(inputs.footSize, outputs.type);
 
         addTextListener(inputs.noteUpper, outputs.noteUpper);
         addTextListener(inputs.noteLower, outputs.noteLower);
@@ -90,7 +99,7 @@ var jcard = (function() {
         addSideListener(inputs.sideA, outputs.sideA);
         addSideListener(inputs.sideB, outputs.sideB);
         addTracksListener([inputs.sideA, inputs.sideB], outputs.tracks);
-        addSizeListener(inputs.trackSize, outputs.tracks);
+        addSizeListener(inputs.frontSize, outputs.tracks);
         addSizeListener(inputs.backSize, outputs.sideA);
         addSizeListener(inputs.backSize, outputs.sideB);
     }
@@ -99,24 +108,27 @@ var jcard = (function() {
     function populate(inputs, fields) {
         inputs.shortBack.checked = fields.short_back !== undefined ? fields.short_back : false;
 
-        inputs.cardColor.value = fields.card_color || 'white';
-        inputs.textColor.value = fields.text_color || 'black';
+        inputs.cardColor.value = fields.cardColor || 'white';
+        inputs.textColor.value = fields.textColor || 'black';
 
-        inputs.title.value = fields.title || '';
-        inputs.subtitle.value = fields.subtitle || '';
-        inputs.titleSize.value = fields.title_size || 12;
+        inputs.fontFamily.value = fields.fontFamily || 'Alte Haas Grotesk';
 
-        inputs.type.value = fields.type || '';
-        inputs.typeSize.value = fields.type_size || 10;
+        inputs.titleMain.value = fields.titleMain || '';
+        inputs.titleSub.value = fields.titleSub || '';
+        inputs.titleMainSize.value = fields.titleMainSize || 12;
+        inputs.titleSubSize.value = fields.titleSubSize || 12;
 
-        inputs.noteUpper.value = fields.note_upper || '';
-        inputs.noteLower.value = fields.note_lower || '';
-        inputs.noteSize.value = fields.note_size || 10;
+        inputs.foot.value = fields.foot || '';
+        inputs.footSize.value = fields.footSize || 6.2;
 
-        inputs.sideA.value = formatList(fields.side_a || []);
-        inputs.sideB.value = formatList(fields.side_b || []);
-        inputs.trackSize.value = fields.track_size || 9;
-        inputs.backSize.value = fields.back_size || 8;
+        inputs.noteUpper.value = fields.noteUpper || '';
+        inputs.noteLower.value = fields.noteLower || '';
+        inputs.noteSize.value = fields.noteSize || 10;
+
+        inputs.sideA.value = formatList(fields.sideA || []);
+        inputs.sideB.value = formatList(fields.sideB || []);
+        inputs.frontSize.value = fields.frontSize || 9;
+        inputs.backSize.value = fields.backSize || 8;
     }
 
     // trigger listener calls on all fields
@@ -124,11 +136,10 @@ var jcard = (function() {
         for (name in inputs) {
             var input = inputs[name];
             var event = document.createEvent('Event');
-            if (input.type === 'checkbox' || input.type === 'file') {
+            if (input.type === 'checkbox' || input.type === 'file')
                 event.initEvent('change', true, true);
-            } else {
+            else
                 event.initEvent('input', true, true);
-            }
             input.dispatchEvent(event);
         }
     }
@@ -143,11 +154,10 @@ var jcard = (function() {
     // toggle a class on an output element when an input is checked
     function addToggleListener(input, output, toggleClass) {
         input.addEventListener('change', function(event) {
-            if (input.checked) {
+            if (input.checked)
                 output.classList.add(toggleClass);
-            } else {
+            else
                 output.classList.remove(toggleClass);
-            }
         });
     }
 
@@ -186,10 +196,33 @@ var jcard = (function() {
     function addTracksListener(inputs, output) {
         inputs.forEach(function(input) {
             input.addEventListener('input', function(event) {
-                var rawSides = inputs.map(function(input) { return input.value; });
+                var rawSides = inputs.map(function(input) {
+                    if (input.id === 'controls-side-b')
+                        return '|' + input.value;
+                    else
+                        return input.value;
+                });
                 var rawTracks = formatList(rawSides);
-                output.innerHTML = formatListText(rawTracks);
+                output.innerHTML = formatListPerSide(formatListText(rawTracks));
             });
+        });
+    }
+
+    // toggles label caps classes
+    function addLabelCapsListener(input, outputs, index) {
+        toggleClass = index === 0 ? 'template-side-a-caps' : 'template-side-b-caps'
+        input.addEventListener('change', function(event) {
+            if (input.checked)
+                outputs[index].classList.add('template-side-a-caps');
+            else
+                outputs[index].classList.remove('template-side-a-caps');
+        });
+    }
+
+    // sets font family
+    function addFontListener(input, output) {
+        input.addEventListener('change', function(event) {
+            output.style.fontFamily = input.value;
         });
     }
 
@@ -198,9 +231,15 @@ var jcard = (function() {
         return list.join('\n');
     }
 
-    // convert a newline delimited string to a bullet delimited string
+    // convert a newline delimited string to a '»' delimited string
     function formatListText(listText) {
-        return listText.trim().replace(/\s*\n\s*/g, '&nbsp;• ');
+        return listText.trim().replace(/\s*\n\s*/g, ' <b>»</b> ');
+    }
+
+    // replaces the side delimiter to its appropriate format
+    function formatListPerSide(listText) {
+        return '<b>A :</b> ' + listText
+          .replace(' <b>»</b> |', '<br><b>B :</b> ');
     }
 
     return {
