@@ -151,24 +151,26 @@ var jcard = (function() {
   function populate(inputs, fields) {
     let i = inputs,
       f = fields;
-    i.bold.checked = f.bold || false;
-    i.italicize.checked = f.italicize || false;
-    i.forceCaps.checked = f.forceCaps || true;
+    i.bold.checked = f.bold !== undefined ? f.bold : false;
+    i.italicize.checked = f.italicize !== undefined ? f.italicize : false;
+    i.forceCaps.checked = f.forceCaps !== undefined ? f.forceCaps : true;
     i.fontFamily.value = f.fontFamily || "Alte Haas Grotesk";
     i.coverImage.value = f.coverImage || "";
     i.cardColor.value = f.cardColor || "#ffffff";
     i.textColor.value = f.textColor || "#000000";
-    i.print2.checked = f.print2 || false;
-    i.shortBack.checked = f.shortBack || false;
-    i.fillCover.checked = f.fillCover || false;
+    i.print2.checked = f.print2 !== undefined ? f.print2 : false;
+    i.shortBack.checked = f.shortBack !== undefined ? f.shortBack : false;
+    i.fillCover.checked = f.fillCover !== undefined ? f.fillCover : false;
     i.titleUpper.value = f.titleUpper || "";
     i.titleLower.value = f.titleLower || "";
     i.titleUpperSize.value = f.titleUpperSize || 12;
     i.titleLowerSize.value = f.titleLowerSize || 12;
     i.frontTitleAlignment.value = f.frontTitleAlignment || "center";
     i.spineTitleAlignment.value = f.spineTitleAlignment || "left";
-    i.frontTitleVisible.checked = f.frontTitleVisible || true;
-    i.spineTitleVisible.checked = f.spineTitleVisible || true;
+    i.frontTitleVisible.checked =
+      f.frontTitleVisible !== undefined ? f.frontTitleVisible : true;
+    i.spineTitleVisible.checked =
+      f.spineTitleVisible !== undefined ? f.spineTitleVisible : true;
     i.footer.value = f.footer || "";
     i.footerSize.value = f.footerSize || 10;
     i.footerAlignment.value = f.footerAlignment || "center";
@@ -185,7 +187,8 @@ var jcard = (function() {
     i.contentsSeparator.value = f.contentsSeparator || " • ";
     i.frontContentsAlignment.value = f.frontContentsAlignment || "left";
     i.backContentsAlignment.value = f.backContentsAlignment || "left";
-    i.frontContentsVisible.checked = f.frontContentsVisible || true;
+    i.frontContentsVisible.checked =
+      f.frontContentsVisible !== undefined ? f.frontContentsVisible : true;
   }
 
   // triggers listener calls on all input fields
