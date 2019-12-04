@@ -1,198 +1,330 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>J-Card Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=4.0">
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    <script src="static/jcard.js"></script>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>J-Card Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=4.0">
+  <link rel="stylesheet" type="text/css" href="res/styles.css">
+  <script defer src="res/jcard.js"></script>
 </head>
+
 <body class="base">
-    <div class="base-column">
-        <header class="base-header">
-            <div class="header">
-    <h1>J-Card Template</h1>
-    <pre>Forked then modified for use in EDEN, plus some fix for IE11. [<a href="https://unixispower.gitlab.io/jcard-template">Original</a>]</pre>
-    <span>Fill out the form below to update the template. Print this page from your browser when you are done.</span>
+  <div class="base-column">
+    <header class="base-header">
+      <div class="header">
+        <h1>J-Card Template</h1>
+        <h4>NET <small>EDITION</small></h4>
+        <span>Fill out the form below to update the template. Print this page from your browser when you are done.</span>
+      </div>
+    </header>
+    <div id="jcard" class="jcard">
+      <div class="jcard-preview">
+        <div class="template printable">
+          <div class="template-boundaries">
+            <div class="template-bleed printable-bleed"></div>
+            <div class="template-crop printable-crop"></div>
+          </div>
+          <div class="template-fold-1 printable-fold"></div>
+          <div class="template-fold-2 printable-fold"></div>
+          <div class="template-back">
+            <div class="template-side-a-label"></div>
+            <div class="template-side-a-contents"></div>
+            <div class="template-side-b-label"></div>
+            <div class="template-side-b-contents"></div>
+          </div>
+          <div class="template-spine">
+            <div class="template-spine-title-group">
+              <div class="template-spine-title-upper"></div>
+              <div class="template-spine-title-lower"></div>
             </div>
-        </header>
-        <div id="jcard" class="jcard">
-            <div class="jcard-preview">
-                <div class="template printable" style="color: rgb(0, 0, 0);" font-family="Alte Haas Grotesk">
-                    <div class="template-boundaries" style="background-color: rgb(255, 255, 255);">
-                        <div class="template-bleed printable-bleed"></div>
-                        <div class="template-crop printable-crop"></div>
+            <div class="template-note-group">
+              <div class="template-note-upper"></div>
+              <div class="template-note-lower"></div>
+            </div>
+          </div>
+          <div class="template-front">
+            <img class="template-cover-image" src="res/cover.png" alt="Cover Image">
+            <div class="template-front-group">
+              <div class="template-front-title-group">
+                <div class="template-front-title-upper"></div>
+                <div class="template-front-title-lower"></div>
+              </div>
+              <div class="template-contents"></div>
+              <div class="template-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jcard-duplicate"></div>
+      <div class="jcard-controls">
+        <form id="controls" class="controls">
+          <fieldset>
+            <legend>Options</legend>
+            <div class="columns">
+              <div class="columns-column-2">
+                <div class="columns">
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-bold"><b>Bold</b></label>
+                      <input id="controls-bold" class="field-input" type="checkbox">
                     </div>
-                    <div class="template-fold-1 printable-fold"></div>
-                    <div class="template-fold-2 printable-fold"></div>
-                    <div class="template-back">
-                        <div class="template-side-a" style="font-size: 8pt;"></div>
-                        <div class="template-side-b" style="font-size: 8pt;"></div>
+                  </div>
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-italicize"><i>Italicize</i></label>
+                      <input id="controls-italicize" class="field-input" type="checkbox">
                     </div>
-                    <div class="template-spine">
-                        <div class="template-spine-title-group" style="font-size: 12pt;">
-                            <div class="template-spine-title"></div>
-                            <div class="template-spine-subtitle"></div>
-                        </div>
-                        <div class="template-note-group" style="font-size: 10pt;">
-                            <div class="template-note-upper"></div>
-                            <div class="template-note-lower"></div>
-                        </div>
+                  </div>
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-force-caps">Force CAPS</label>
+                      <input id="controls-force-caps" class="field-input" type="checkbox">
                     </div>
-                    <div class="template-front">
-                        <img class="template-cover" src="static/COVER.PNG" alt="Cover image">
-                        <div class="template-front-group">
-                            <div class="template-front-title-group" style="font-size: 12pt;">
-                                <div class="template-front-title"></div>
-                                <div class="template-front-subtitle"></div>
-                            </div>
-                            <div class="template-tracks" style="font-size: 9pt;"></div>
-                            <div class="template-type" style="font-size: 6.2pt;"></div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+                <div class="field">
+                  <label class="field-label" for="controls-font-family">Font Family</label>
+                  <input id="controls-font-family" class="field-input" type="text">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="controls-cover-image">Cover Image</label>
+                  <input id="controls-cover-image" class="field-input" type="file" accept="image/*">
+                </div>
+              </div>
+              <div class="columns-column">
+                <div class="field">
+                  <label class="field-label" for="controls-card-color">Card Color</label>
+                  <input id="controls-card-color" class="field-input" type="color">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="controls-text-color">Text Color</label>
+                  <input id="controls-text-color" class="field-input" type="color">
+                </div>
+              </div>
             </div>
-            <div class="jcard-duplicate">
+            <hr>
+            <div class="columns">
+              <div class="columns-column-2">
+                <div class="columns">
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-print-2">Print 2</label>
+                      <input id="controls-print-2" class="field-input" type="checkbox">
+                    </div>
+                  </div>
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-short-back">Short Back</label>
+                      <input id="controls-short-back" class="field-input" type="checkbox">
+                    </div>
+                  </div>
+                  <div class="columns-column">
+                    <div class="field">
+                      <label class="field-label" for="controls-fill-cover">Fill Cover</label>
+                      <input id="controls-fill-cover" class="field-input" type="checkbox">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns-column"></div>
             </div>
-            <div class="jcard-controls">
-                <hr>
-                <form id="controls" class="controls">
-                    <fieldset>
-                        <legend>Options</legend>
-                        <div class="columns">
-                            <div class="columns-column-2">
-                                <div class="columns">
-                                    <div class="columns-column">
-                                        <div class="field">
-                                            <label class="field-label" for="controls-short-back">Short Back</label><input id="controls-short-back" class="field-input" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="columns-column">
-                                        <div class="field">
-                                            <label class="field-label" for="controls-all-caps">ALL CAPS</label><input id="controls-all-caps" class="field-input" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="columns-column">
-                                        <div class="field">
-                                            <label class="field-label" for="controls-label-caps">Label CAPS</label><input id="controls-label-caps" class="field-input" type="checkbox" checked="true">
-                                        </div>
-                                    </div>
-                                    <div class="columns-column">
-                                        <div class="field">
-                                            <label class="field-label" for="controls-dual-print">Dual Print</label><input id="controls-dual-print" class="field-input" type="checkbox" title="Print two of this J-card onto a single page">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-cover">Cover Image</label><input id="controls-cover" class="field-input" accept="image/*" type="file">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-font-family">Font Family</label><input id="controls-font-family" class="field-input" type="text" value="Alte Haas Grotesk">
-                                </div>
-                            </div>
-                            <div class="columns-column">
-                                <div class="field">
-                                    <label class="field-label" for="controls-card-color">Card Color</label><input id="controls-card-color" class="field-input" value="#ffffff" type="color">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-text-color">Text Color</label><input id="controls-text-color" class="field-input" value="#000000" type="color">
-                                </div>
-								<div class="field">
-                                    <label class="field-label" for="controls-italic"><i>Italic</i></label><input id="controls-italic" class="field-input" type="checkbox">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <br>
-                    <fieldset>
-                        <legend>Titles</legend>
-                        <div class="columns">
-                            <div class="columns-column-2">
-                                <div class="field">
-                                    <label class="field-label" for="controls-title-main">Main</label><input id="controls-title-main" class="field-input" type="text">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-title-sub">Sub</label><input id="controls-title-sub" class="field-input" type="text">
-                                </div>
-                            </div>
-                            <div class="columns-column">
-                                <div class="field">
-                                    <label class="field-label" for="controls-title-main-size">Size</label><input id="controls-title-main-size" class="field-input" min="0" step="0.1" value="12" type="number">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-title-sub-size">Size</label><input id="controls-title-sub-size" class="field-input" min="0" step="0.1" value="12" type="number">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <br>
-                    <fieldset>
-                        <legend>Footnote</legend>
-                        <div class="columns">
-                            <div class="columns-column-2">
-                                <div class="field">
-                                    <label class="field-label" for="controls-foot">Text</label><input id="controls-foot" class="field-input" type="text">
-                                </div>
-                            </div>
-                            <div class="columns-column">
-                                <div class="field">
-                                    <label class="field-label" for="controls-foot-size">Size</label><input id="controls-foot-size" class="field-input" min="0" step="0.1" value="6.2" type="number">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <br>
-                    <fieldset>
-                        <legend>Spine Notes</legend>
-                        <div class="columns">
-                            <div class="columns-column-2">
-                                <div class="field">
-                                    <label class="field-label" for="controls-note-upper">Upper</label><input id="controls-note-upper" class="field-input" type="text">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-note-lower">Lower</label><input id="controls-note-lower" class="field-input" type="text">
-                                </div>
-                            </div>
-                            <div class="columns-column">
-                                <div class="field">
-                                    <label class="field-label" for="controls-note-size">Size</label><input id="controls-note-size" class="field-input" min="0" step="0.1" value="10" type="number">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <br>
-                    <fieldset>
-                        <legend>Tracks</legend>
-                        <div class="columns">
-                            <div class="columns-column-2">
-                                <div class="field">
-                                    <label class="field-label" for="controls-side-a">Side A</label><textarea id="controls-side-a" class="field-textarea" rows="5"></textarea>
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-side-b">Side B</label><textarea id="controls-side-b" class="field-textarea" rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="columns-column">
-                                <div class="field">
-                                    <label class="field-label" for="controls-front-size">Front Size</label><input id="controls-front-size" class="field-input" min="0" step="0.1" value="9" type="number">
-                                </div>
-                                <div class="field">
-                                    <label class="field-label" for="controls-back-size">Back Size</label><input id="controls-back-size" class="field-input" min="0" step="0.1" value="8" type="number">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    <script>
-        (function() {
-            jcard.init('#jcard', {"cardColor":"#ffffff","textColor":"#000000","titleMain":"J-CARD TEMPLATE","titleSub":"u0r0, 02/18/2019.","foot":"*SOME TRACKS OMITTED TO FIT TAPE LENGTH (C 60)","noteUpper":"CD, 02/18/2019","noteLower":"CrO2, B NR, STEREO","sideA":["TRACK A1","TRACK A2","TRACK A3","TRACK A4"],"sideB":["TRACK B1","TRACK B2","TRACK B3","TRACK B4"],"fontFamily":"Alte Haas Grotesk"});
-        })();
-    </script>
+            <hr>
+            <fieldset>
+              <legend>Titles</legend>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <div class="field">
+                    <label class="field-label" for="controls-title-upper">Upper Text</label>
+                    <input id="controls-title-upper" class="field-input field-cardtext" type="text">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-title-lower">Lower Text</label>
+                    <input id="controls-title-lower" class="field-input field-cardtext" type="text">
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <div class="field">
+                    <label class="field-label" for="controls-title-upper-size">Upper Size</label>
+                    <input id="controls-title-upper-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-title-lower-size">Lower Size</label>
+                    <input id="controls-title-lower-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <h5>Alignment</h5>
+                  <div class="field">
+                    <label class="field-label" for="controls-front-title-alignent">Front</label>
+                    <select id="controls-front-title-alignment">
+                      <option value="left"><small>Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-spine-title-alignent">Spine</label>
+                    <select id="controls-spine-title-alignment">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <h5>Visibility</h5>
+                  <div class="field">
+                    <label class="field-label" for="controls-front-title-visible">Front</label>
+                    <input id="controls-front-title-visible" class="field-input" type="checkbox">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-spine-title-visible">Spine</label>
+                    <input id="controls-spine-title-visible" class="field-input" type="checkbox">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+              <legend>Footer</legend>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <div class="field">
+                    <label class="field-label" for="controls-footer">Text</label>
+                    <textarea id="controls-footer" class="field-textarea field-cardtext"></textarea>
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <div class="field">
+                    <label class="field-label" for="controls-footer-size">Size</label>
+                    <input id="controls-footer-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-footer-alignment">Alignment</label>
+                    <select id="controls-footer-alignment">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+              <legend>Notes</legend>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <div class="field">
+                    <label class="field-label" for="controls-note-upper">Upper Text</label>
+                    <input id="controls-note-upper" class="field-input field-cardtext" type="text">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-note-lower">Lower Text</label>
+                    <input id="controls-note-lower" class="field-input field-cardtext" type="text">
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <div class="field">
+                    <label class="field-label" for="controls-note-size">Size</label>
+                    <input id="controls-note-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-note-alignment">Alignment</label>
+                    <select id="controls-note-alignment">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+              <legend>Contents</legend>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <div class="field">
+                    <input id="controls-side-a-label" class="field-label-editable field-cardtext" type="text" placeholder="Side A">
+                    <textarea id="controls-side-a-contents" class="field-textarea field-cardtext" rows="5"></textarea>
+                  </div>
+                  <div class="field">
+                    <input id="controls-side-b-label" class="field-label-editable field-cardtext" type="text" placeholder="Side B">
+                    <textarea id="controls-side-b-contents" class="field-textarea field-cardtext" rows="5"></textarea>
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <div class="field">
+                    <label class="field-label" for="controls-front-size">Front Size</label>
+                    <input id="controls-front-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-back-size">Back Size</label>
+                    <input id="controls-back-size" class="field-input" type="number" min="0" step="0.1">
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-contents-separator">Separator</label>
+                    <input id="controls-contents-separator" class="field-input field-cardtext" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="columns-column-2">
+                  <h5>Alignment</h5>
+                  <div class="field">
+                    <label class="field-label" for="controls-front-contents-alignent">Front</label>
+                    <select id="controls-front-contents-alignment">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="controls-back-contents-alignent">Back</label>
+                    <select id="controls-back-contents-alignment">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="columns-column">
+                  <h5>Visibility</h5>
+                  <div class="field">
+                    <label class="field-label" for="controls-front-contents-visible">Front</label>
+                    <input id="controls-front-contents-visible" class="field-input" type="checkbox">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </fieldset>
+          <hr>
+          <fieldset>
+            <legend>Save to File</legend>
+            <span>This will save the form data into a JSON string in a downloadable file. However, cover images must be saved and hence loaded separately.</span><br><br>
+            <span>No data will be sent to any server.</span><br><br>
+            <button id="controls-save" type="button">Save</button>
+          </fieldset>
+          <hr>
+          <fieldset>
+            <legend>Load from File</legend>
+            <span>Specify the JSON file denoting form data. Any unsaved changes will be lost.</span><br><br>
+            <input id="controls-load-file" type="file"><br><br>
+            <button id="controls-load" type="button">Load</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <footer class="base-footer">
-        <div class="footer">
-            <span>This template <code>--and this <a href="https://github.com/BrendonIrwan/jcard-template">fork</a>--</code> is free and <a href="https://gitlab.com/unixispower/jcard-template">open source</a> software.</span>
-        </div>
+      <div class="footer">
+        <span>This template—and this <a href="https://github.com/BrendonIrwan/jcard-template">fork</a>—is free and <a href="https://gitlab.com/unixispower/jcard-template">open source</a> software.</span><br><br>
+        <span><small>u1r0 by Brendon, 12/04/2019.</small></span>
+      </div>
     </footer>
-</div>
-</body></html>
+</body>
+
+</html>
