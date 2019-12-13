@@ -1,5 +1,7 @@
 /*
  * Interactive j-card template logic.
+ *
+ * Prettified at prettier.io
  */
 var jcard = (function() {
   // finds input elements in the controls module
@@ -184,7 +186,7 @@ var jcard = (function() {
     i.sideBContents.value = f.sideBContents || "";
     i.frontSize.value = f.frontSize || 9;
     i.backSize.value = f.backSize || 8;
-    i.contentsSeparator.value = f.contentsSeparator || " • ";
+    i.contentsSeparator.value = f.contentsSeparator || "&nbsp;• ";
     i.frontContentsAlignment.value = f.frontContentsAlignment || "left";
     i.backContentsAlignment.value = f.backContentsAlignment || "left";
     i.frontContentsVisible.checked =
@@ -247,7 +249,8 @@ var jcard = (function() {
       separator = inputs[1],
       shortBack = inputs[2],
       f = function(event) {
-        if (shortBack.checked)
+        if (!tracks.value && !label.value) output.innerHTML = "";
+        else if (shortBack.checked)
           output.innerHTML =
             "<b>" +
             label.value +
@@ -327,9 +330,11 @@ var jcard = (function() {
       element.href =
         "data:application/json;charset=utf-8," +
         encodeURIComponent(JSON.stringify(data));
-      element.download = data.titleUpper
-        ? data.titleUpper + ".jcard.json"
-        : "Unnamed J-Card.jcard.json";
+      let filename;
+      if (data.titleUpper) filename = data.titleUpper;
+      else if (data.titleLower) filename = data.titleLower;
+      else filename = "Unnamed J-Card";
+      element.download = filename + ".jcard.json";
       element.hidden = true;
       document.body.append(element);
       element.click();

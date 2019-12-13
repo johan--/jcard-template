@@ -3,15 +3,15 @@
 Printable in-browser template for cassette tape J-cards, plus serialization
 (load/save) features and greater customizables.
 
-Latest update: **update 1 revision 0, 12/04/2019.**
+Latest update: **update 1 revision 1, 12/13/2019.**
 
 
 ## Users
 
-**Download the latest package
-[[^](https://github.com/BrendonIrwan/jcard-template/raw/master/release/J-Card%20Template%20u1r0.zip)]**
+**Download the
+[[latest release package](https://github.com/BrendonIrwan/jcard-template/raw/master/release/J-Card%20Template%20u1r1.zip)].**
 
-Then open the `J-Card Template.html` with your web browser.
+Extract, then open `J-Card Template.html` with your web browser.
 
 
 ## Developers

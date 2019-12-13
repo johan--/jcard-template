@@ -15,7 +15,10 @@
       <div class="header">
         <h1>J-Card Template</h1>
         <h4>NET <small>EDITION</small></h4>
-        <span>Fill out the form below to update the template. Print this page from your browser when you are done.</span>
+      </div>
+      <hr>
+      <div class="menu">
+        <span><b><small>Menu:</small> </b>[ <a href="#instructions">Instructions</a> ]—[ <a href="#loadsave">Load / Save</a> ]</span>
       </div>
     </header>
     <div id="jcard" class="jcard">
@@ -303,26 +306,31 @@
             </fieldset>
           </fieldset>
           <hr>
+          <fieldset id="loadsave">
+            <legend>Load from File</legend>
+            <span>Specify the JSON file denoting form data. Any unsaved changes will be lost.</span><br><br>
+            <input id="controls-load-file" type="file"><br><br>
+            <button id="controls-load" type="button">Load</button>
+          </fieldset>
+          <hr>
           <fieldset>
             <legend>Save to File</legend>
             <span>This will save the form data into a JSON string in a downloadable file. However, cover images must be saved and hence loaded separately.</span><br><br>
             <span>No data will be sent to any server.</span><br><br>
             <button id="controls-save" type="button">Save</button>
           </fieldset>
-          <hr>
-          <fieldset>
-            <legend>Load from File</legend>
-            <span>Specify the JSON file denoting form data. Any unsaved changes will be lost.</span><br><br>
-            <input id="controls-load-file" type="file"><br><br>
-            <button id="controls-load" type="button">Load</button>
-          </fieldset>
         </form>
+        <hr>
+        <fieldset id="instructions">
+          <legend>Instructions</legend>
+          <span>Fill out the form below to update the template. Print this page from your browser when you are done.</span>
+        </fieldset>
       </div>
     </div>
     <footer class="base-footer">
       <div class="footer">
         <span>This template—and this <a href="https://github.com/BrendonIrwan/jcard-template">fork</a>—is free and <a href="https://gitlab.com/unixispower/jcard-template">open source</a> software.</span><br><br>
-        <span><small>u1r0 by Brendon, 12/04/2019.</small></span>
+        <span><small>u1r1 by Brendon, 12/13/2019.</small></span>
       </div>
     </footer>
 </body>
