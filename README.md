@@ -3,7 +3,7 @@
 Printable in-browser template for cassette tape J-cards, plus serialization
 (load/save) features and greater customizables.
 
-Latest update: **update 1 revision 1, 12/13/2019.**
+Latest release: **Update 1 Revision 1, 12/13/2019.**
 
 
 ## Users
@@ -14,25 +14,18 @@ Latest update: **update 1 revision 1, 12/13/2019.**
 Extract, then open `J-Card Template.html` with your web browser.
 
 
-## Developers
+## About
 
-As with most web-based programs, the sources are the executables themselves.
-
-
-## About The Project
-
-This is a fork of Blaine Murphy's repository [[^](https://gitlab.com/unixispower/jcard-template)].
+This is a fork of
+[[Blaine Murphy's repository](https://gitlab.com/unixispower/jcard-template)].
 
 
 ### Background
 
-I started this project for two reasons:
-
-First, I found this template back in early 2018 when browsing around Hugo's blog
-posts, and used it for all my mix tapes since then. Hugo is the person
-responsible for [[The Walkman Archive](http://walkman-archive.com)]. I like its
-simplicity and ease of use compared to those templates slapped into Word
-document files that obviously will look wrong in LibreOffice.
+I found this J-card template back in early 2018 and liked it for its ease of
+use, compared to those templates slapped into Word document files that may not
+appear consistently throughout various word processors. I used it for all my mix
+tapes since then.
 
 However, I ran into a problem: Microsoft's Print To PDF feature did not
 cooperate well with Waterfox, a Firefox-based web browser. So I had to cave and
@@ -40,7 +33,7 @@ use Internet Explorer--being my only alternative browser--as a remedy. Because
 Internet Explorer is so old, some texts were not displaying properly, turns out
 that the fix was just defining an extra CSS rule to the spine title group.
 
-Second, I felt that I must maintain my base-level HTML + JavaScript skills I
+Then I felt that I must maintain my base-level HTML + JavaScript skills I
 acquired back in late 2016. So I set myself a challenge to modify and add new
 features to the existing template. This challenge meant actually reading and
 understanding someone else's code, which I have never done to this point.
@@ -55,10 +48,11 @@ is being run offline, which itself is beneficial in its own ways.
 
 
 ### NET Integration
+
 After taking a web development course in the Summer of 2019, my HTML +
 JavaScript skills were refreshed. So I decided to give this project an overhaul,
 in addition to a huge list of feature additions. One of the notable changes in
-update 1 is the integration of NET.
+Update 1 is the integration of NET.
 
 NET is a broad umbrella term. One of its definitions refers to all my web
 projects. The name was deliberately chosen to differentiate itself from the
@@ -78,5 +72,5 @@ anyone a taste of what it is about, especially when compared to the Internet.
 
 ## Fonts
 
-Fonts in the `static/fonts` directory were created by Yann Le Coroller and
-are released under a custom license, see `static/fonts/LICENSE` for details.
+Fonts in the `res/fonts` directory were created by Yann Le Coroller and
+are released under a custom license, see `res/fonts/LICENSE` for details.
