@@ -8,8 +8,17 @@ Latest release: **Update 1 Revision 1, 12/13/2019.**
 
 ## Users
 
-**Download the
-[[latest release package](https://github.com/BrendonIrwan/jcard-template/raw/master/release/J-Card%20Template%20u1r1.zip)].**
+**[[Launch J-Card Template](https://BrendonIrwan.github.io/jcard-template)]**
+
+This program is now accessible online! Simply tap on the link just above, or head over to
+
+`https://BrendonIrwan.github.io/jcard-template`.
+
+
+### Working Offline
+
+Want J-Card Template offline? Then download the
+[[latest release package](https://github.com/BrendonIrwan/jcard-template/raw/master/release/J-Card%20Template%20u1r1.zip)].
 
 Extract, then open `J-Card Template.html` with your web browser.
 
